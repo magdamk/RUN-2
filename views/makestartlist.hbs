@@ -1,0 +1,84 @@
+<h2>Bieg {{race}} </h2>
+
+<form class="input-group mb-3" action="?race={{race}}" method="GET">
+    <input type="text" class="input-group-text" id="search" name="search" value="{{search}}" placeholder="Wpisz fragment nazwiska..." style="width: 300px"/>
+    <div class="input-group-append" >
+    <input type="hidden" name="race" value="{{race}}"/>
+    <input type="submit" class="btn btn-outline-dark material-icons" value="search" style="width: 100px"/>
+    </div>
+</form>
+
+<div>
+    Znaleziono zawodników: {{count}}
+    <br>
+</div>
+<br>
+
+<table class="table table-hover table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Nr startowy</th>
+            <th>Nazwisko</th>
+            <th>Imię</th>
+            <th>Data ur.</th>
+            <th>Miejscowość</th>
+            <th>Email</th>
+            <th>Klub</th>
+            <th>Dodaj</th>
+            <th>Usuń</th>
+        </tr>
+    </thead>
+    <tbody>
+          {{#each data}}
+        <tr><td><b>{{this.start_id}}</b></td>
+        <td>{{this.l_name}}</td>
+        <td>{{this.f_name}}</td>
+        <td>{{this.birth}}</td>
+        <td>{{this.city}}</td>
+        <td>{{this.email}}</td>
+        <td>{{this.club}}</td>
+        {{#if this.added}}
+        <td></td>
+        <td>
+         <form class="form" method="GET" action="">         
+                <input type = "hidden" name="_id" value="{{this._id}}" />  
+                <input type = "hidden" name="race" value="{{../race}}" /> 
+                <input type = "hidden" name="search" value="{{../search}}" /> 
+                <input type = "hidden" name="del" value="true" />
+                <button type="submit" class="btn btn-danger" style="width: 100px;">Usuń</button>   
+            </form>
+            </td>
+        {{else}}
+            <td>
+            <form class="form" method="GET" action="">         
+                <input type = "hidden" name="_id" value="{{this._id}}" />  
+                <input type = "hidden" name="race" value="{{../race}}" /> 
+                <input type = "hidden" name="search" value="{{../search}}" /> 
+                <input type = "hidden" name="del" value="false" />
+                <button type="submit" class="btn btn-success" style="width: 100px;">Dodaj</button>   
+            </form>
+            </td><td></td>
+            {{/if}}
+        </tr>
+    {{/each}}
+    </tbody>
+</table>
+<br>
+<div class="blink">Uwaga! Po zamknięciu listy dopisanie zawodnika do biegu {{race}} będzie niemożliwe!
+    Niemożliwe będzie też usunięcie biegu {{race}}!
+</div>
+<br>
+
+<form class="form" method="GET" action="/run/race/makestartlist/close/">         
+    <input type = "hidden" name="race" value="{{race}}" /> 
+    <button type="submit" class="btn btn-outline-danger" style="width: 100px;">Zamknij listę</button>   
+</form>
+ <script>
+    document.addEventListener("DOMContentLoaded", function(event) { 
+        var scrollpos = localStorage.getItem('scrollpos');
+        if (scrollpos) window.scrollTo(0, scrollpos);
+            });
+    window.onbeforeunload = function(e) {
+        localStorage.setItem('scrollpos', window.scrollY);
+    };
+</script>

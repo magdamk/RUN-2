@@ -1,0 +1,26 @@
+<br><br>
+<input type="button" class="btn btn-outline-primary" onclick="printDiv()" value="Wydrukuj" />
+<br><br>
+<div id="doDruku">
+<h2>Klasyfikacja klubowa po biegu {{race}}</h2>
+<table class="table table-hover table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Miejsce</th>
+            <th>Klub</th>
+            <th>Punkty</th>
+        </tr>
+    </thead>
+    <tbody class="podium">
+        {{#each data}}
+        <tr>
+            <td>{{this.place}}</td>
+            <td>{{this.club}}</td> 
+            <td>{{this.points}}</td>
+        </tr>
+        {{/each}}
+        </ol>
+    </tbody>
+</table>
+<br>
+</div>

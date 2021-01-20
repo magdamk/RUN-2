@@ -1,0 +1,60 @@
+<br><br>
+<input type="button" class="btn btn-outline-primary" onclick="printDiv()" value="Wydrukuj" />
+<br><br>
+<div>1 miejsce - 15 punków, 2 miejsce - 12 punktów, 3 miejsce - 10 punktów, 4 - 8 p, 5 - 7p, 6 - 6p,
+    7 - 5p, 8 - 4p, 9- 3p, 10 - 2p, >10 - 1p, 0p za nieukończony bieg.
+</div>
+<div id="doDruku">
+<h2>Klasyfikacja kategorii OPEN po biegu {{race}}</h2>
+<table class="table table-hover table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Miejsce</th>
+            <th>Nr startowy</th>
+            <th>Nazwisko</th>
+            <th>Imię</th>
+            <th>Klub</th>
+            <th>Punkty</th>
+        </tr>
+    </thead>
+    <tbody class="podium">
+        {{#each data}}
+        <tr>
+            <td>{{this.place}}</td>
+            <td>{{this.start_id}}</td> 
+            <td>{{this.l_name}}</td>
+            <td>{{this.f_name}} </td>
+            <td>{{this.club}} </td>
+            <td>{{this.points}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<br>
+<h2>Klasyfikacja kategorii KOBIETY po biegu {{race}}</h2>
+<table class="table table-hover table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Miejsce</th>
+            <th>Nr startowy</th>
+            <th>Nazwisko</th>
+            <th>Imię</th>
+            <th>Klub</th>
+            <th>Punkty</th>
+        </tr>
+    </thead>
+    <tbody class="podium">
+        {{#each dataK}}
+        <tr>
+            <td>{{this.place}}</td>
+            <td>{{this.start_id}}</td> 
+            <td>{{this.l_name}}</td>
+            <td>{{this.f_name}} </td>
+            <td>{{this.club}} </td>
+            <td>{{this.points}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+</div>

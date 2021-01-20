@@ -1,0 +1,20 @@
+<h2>{{title}}</h2>
+<p>{{text}}</p>
+<h4>Podaj dane klubu</h4>
+<form class="row g-3" method="POST" action="">
+    <div class="col-md-4">
+        <label class="form-label" for="club_name" >Nazwa klubu</label>
+        <input class="form-control" type="text" id="club_name" name="club_name" placeholder="Nazwa klubu..." required minlength="1"/>
+    </div>
+    <div class="col-md-4">
+        <label class="form-label" for="club_city">Miasto</label>
+       <input class="form-control" type="text" id="club_city" name="club_city" placeholder="Miasto..." required minlength="1"/>
+    </div>
+    <div class="col-md-4">
+        <label class="form-label" for="club_email">E-mail</label>
+        <input class="form-control" type="email" id="club_email" name="club_email" placeholder="email@dot.com" required></select>
+    </div>   
+        <div class="col-12" style="margin-top: 1em;">
+        <button type="submit" class="btn btn-dark">Dodaj</button>
+    </div> 
+</form>

@@ -1,0 +1,94 @@
+<h2>{{title}}</h2>
+<div>
+<a class="btn btn-outline-info" href = "/run/participant/create/"><i class="material-icons">add</i> Dopisz zawodnika</a><br><br>
+</div>
+<form class="input-group mb-3" action="/run/participant/" method="GET">
+    <input type="text" id="search" class="input-group-text" name="search" value="{{search}}" placeholder="Wpisz fragment nazwiska..." style="width: 300px"/>
+    <div class="input-group-append">
+    <input type="hidden" class="col-md-1" name="sort" value="{{sort}}"/>
+    <input type="submit" class="btn btn-outline-dark material-icons" value="search" style="width: 100px"/>
+    </div>
+</form>
+<div>
+    Znaleziono zawodników: {{count}}
+    <br>
+    Stron: {{maxPage}}
+</div>
+<div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item"> <a class="page-link" href="?sort=1&search={{search}}">A-Z</a></li>
+            <li class="page-item"> <a class="page-link" href="?sort=-1&search={{search}}">Z-A</a></li>
+            <li class="page-item"><a class="page-link" href="?sort={{sort}}&page={{prevPage}}&search={{search}}">&lt;&lt;</a></li>
+            {{#each pages }}
+                {{#if this.selected}}
+                    <li class="page-item"><a class="page-link currentPage">{{this.visible}}</a></li>
+                {{else}}
+                    <li class="page-item"><a class="page-link " href="?sort={{../sort}}&page={{this.actual}}&search={{../search}}">{{this.visible}}</a></li>
+                {{/if}}  
+            {{/each}}
+            <li class="page-item"><a class="page-link" href="?sort={{sort}}&page={{nextPage}}&search={{search}}">&gt;&gt;</a></li>
+        </ul>
+    </nav>
+</div>
+
+<table class="table table-hover table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Nr startowy</th>
+            <th>Nazwisko</th>
+            <th>Imię</th>
+            <th>Opcje</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    {{#each data}}
+        <tr>
+            <td><b>{{this.start_id}}</b></td>
+            <td>{{this.l_name}}</td>
+            <td>{{this.f_name}}</td>
+            <td>
+                <form class="form" method="POST" action="/run/participant/find/">         
+                    <button type="submit" class="btn btn-outline-info">Wyświetl</button>      
+                    <input type = "hidden" name="_id" value="{{this._id}}" style="width: auto;"/>  
+                </form>
+            </td>
+            <td>
+                <form class="form" method="POST" action="/run/participant/edit/">         
+                    <button type="submit" class="btn btn-outline-warning">Edytuj</button>      
+                    <input type = "hidden" name="_id" value="{{this._id}}" style="width: auto;"/>  
+                </form>
+            </td>
+            <td>
+                <form class="simpleform" method="POST" action="/run/participant/delete/">         
+                    <button type="submit" class="btn btn-outline-danger" >Usuń</button>     
+                    <input type = "hidden" name="_id" value="{{this._id}}" style="width: auto;"/> 
+                </form>
+            </td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>
+<div>Średnia wieku zawodników: {{report}} lat.</div>
+<br>
+<div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item"> <a class="page-link" href="?sort=1&search={{search}}">A-Z</a></li>
+            <li class="page-item"> <a class="page-link" href="?sort=-1&search={{search}}">Z-A</a></li>
+            <li class="page-item"><a class="page-link" href="?sort={{sort}}&page={{prevPage}}&search={{search}}">&lt;&lt;</a></li>
+            {{#each pages }}
+                {{#if this.selected}}
+                    <li class="page-item"><a class="page-link currentPage">{{this.visible}}</a></li>
+                {{else}}
+                    <li class="page-item"><a class="page-link " href="?sort={{../sort}}&page={{this.actual}}&search={{../search}}">{{this.visible}}</a></li>
+                {{/if}}  
+            {{/each}}
+            <li class="page-item"><a class="page-link" href="?sort={{sort}}&page={{nextPage}}&search={{search}}">&gt;&gt;</a></li>
+        </ul>
+    </nav>
+</div>
+
+

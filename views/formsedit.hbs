@@ -1,0 +1,64 @@
+<h2>{{title}}</h2>
+<p>{{text}}</p>
+<h4>Edytuj dane zawodnika</h4>
+<form class="row g-3" method="POST" action="/run/participant/update/">
+    <div class="col-md-4">
+        <input type = "hidden" name="_id" value="{{dane._id}}" style="width: auto;"/> 
+        <label class="form-label" for="f_name">Imię</label>
+        <input type="text" class="form-control" id="f_name" name="f_name" value="{{dane.f_name}}" required minlength="1"/>
+    </div>
+    <div class="col-md-4">
+        <label class="form-label" for="l_name">Nazwisko</label>
+        <input type="text" class="form-control" id="l_name" name="l_name" value="{{dane.l_name}}" required minlength="1"/>
+    </div>
+    <div class="col-md-4">
+        <label class="form-label" for="city">Miejscowość</label>
+        <input type="text" class="form-control" id="city" name="city" value="{{dane.city}}" required>
+    </div>   
+    <div class="col-md-5">
+        <label class="form-label" for="email">E-mail</label>
+        <input type="email" class="form-control" id="email" name="email" value="{{dane.email}}" required>
+    </div>    
+    
+    <div class="col-md-3">
+        <label class="form-label" for="club">Klub</label>
+        <select id="club" class="form-control" name="club" >
+        <option value= "">BRAK</option>
+            {{#each kluby}}
+                {{#if this.selected}} 
+                    <option value="{{this.name}}" selected>{{this.name}}</option>
+                {{else }}
+                    <option value="{{this.name}}" >{{this.name}}</option>
+                {{/if}} 
+            {{/each}} 
+        </select>
+    </div>    
+    <div class="col-md-2">
+        <label class="form-label" for="birth">Rok ur.</label>
+        <select id="birth" class="form-control" name="birth" required >
+        <option value= "">BRAK</option>
+            {{#each lata}}
+                {{#if this.selected}} 
+                    <option value="{{this.year}}" selected>{{this.year}}</option>
+                {{else }}
+                    <option value="{{this.year}}" >{{this.year}}</option>
+                {{/if}} 
+            {{/each}} 
+        </select>
+    </div>        
+    <div class="col-md-2">
+        <label for="gender" class="form-label">Płeć</label> 
+        <select class="form-control" id="gender" name= "gender" required>
+            {{#if gender}}
+            <option value="K" selected>K</option>
+            <option value="M">M</option>
+            {{else}}
+            <option value="K">K</option>
+            <option value="M" selected>M</option>
+            {{/if}}
+        </select>
+    </div>        
+    <div class="col-12" style="margin-top: 1em;">
+        <button type="submit" class="btn btn-dark">Zmień</button>
+    </div> 
+</form>

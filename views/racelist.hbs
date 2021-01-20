@@ -1,0 +1,54 @@
+<h2>{{title}}</h2>
+<div><a class="btn btn-outline-info" href = "/run/race/create/"><i class="material-icons">add</i>Nowy bieg</a></div>
+<br>
+<table class="table table-hover table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Bieg</th>
+            <th>Data</th>
+            <th>Lista startowa</th>
+            <th>Wyniki</th>
+            <th>Klasyfikacja łączna</th>
+            <th>Klasyfikacja klubowa</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each biegi}}
+        <tr>
+            <td>{{this.race_id}}</td> 
+            <td>{{this.date}}</td>
+            <td>
+                {{#if this.list.ready}} 
+                    <a name={{this.race_id}} href="/run/race/listastartowa/?race={{this.race_id}}">Lista bieg {{this.race_id}}</a> 
+                {{else}} 
+                    <a name={{this.race_id}} href="/run/race/makestartlist/?race={{this.race_id}}&del=false">Utwórz</a>
+                {{/if}}
+            </td>
+            <td>    
+                {{#if this.results.ready}} 
+                    <a name={{this.race_id}} href="/run/race/results/?race={{this.race_id}}">Wyniki bieg {{this.race_id}}</a> 
+                {{else}} 
+                    {{#if this.list.ready}}
+                        <a name={{this.race_id}} href="/run/race/enterresults/?race={{this.race_id}}">Podaj</a>
+                    {{/if}}
+                {{/if}} 
+            </td>
+                {{#if this.results.ready}}
+                    <td><a name={{this.race_id}} href="/run/race/class/?race={{this.race_id}}">Klasyfikacja łączna po {{this.race_id}}</a></td>
+                    <td><a name={{this.race_id}} href="/run/race/clubclass/?race={{this.race_id}}">Klasyfikacja klubowa po {{this.race_id}}</a> </td>
+                {{else}}
+                    <td></td>
+                    <td></td>
+                {{/if}}
+            <td>
+                {{#if this.list.ready}}
+                {{else}} 
+                    <a class="btn btn-danger" name={{this.race_id}} href="/run/race/del/?race={{this.race_id}}">Usuń {{this.race_id}}</a>
+                {{/if}}
+            </td>    
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+

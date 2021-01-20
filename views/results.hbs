@@ -1,0 +1,86 @@
+<br><br>
+<input type="button" class="btn btn-outline-primary" onclick="printDiv()" value="Wydrukuj" />
+<br><br>
+<div id="doDruku">
+<h2>Wyniki Bieg {{race}} kategoria OPEN</h2>
+<table class="table table-hover table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Miejsce</th>
+            <th>Nr startowy</th>
+            <th>Nazwisko</th>
+            <th>Imię</th>
+            <th>Klub</th>
+        </tr>
+    </thead>
+    <tbody class="podium">
+        {{#each data}}
+        <tr>
+            <td>{{this.place}}</td> 
+            <td>{{this.start_id}}</td> 
+            <td>{{this.l_name}}</td>
+            <td>{{this.f_name}} </td>
+            <td>{{this.club}} </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<br>
+<br>
+{{#if data3.exists}}
+<h3>Wyniki Bieg {{race}} kategoria KOBIETY</h3>
+<table  class="table table-hover table-striped">
+     <thead class="table-dark">
+        <tr>
+            <th>Miejsce</th>
+            <th>Nr startowy</th>
+            <th>Nazwisko</th>
+            <th>Imię</th>
+            <th>Klub</th>
+        </tr>
+    </thead>
+ <tbody class="podium">
+        {{#each data3}}
+        <tr>
+            <td>{{this.placeK}} </td> 
+            <td>{{this.start_id}}</td> 
+            <td>{{this.l_name}}</td>
+            <td>{{this.f_name}} </td>
+            <td>{{this.club}} </td>
+        </tr>
+        {{/each}}
+    </tbody>
+
+</table>
+
+{{/if}}
+<br>
+{{#if data2.exist}}
+<h3>Nie ukończyli:</h3>
+<table  class="table table-hover table-striped">
+     <thead class="table-dark">
+        <tr>
+            <th>Miejsce</th>
+            <th>Nr startowy</th>
+            <th>Nazwisko</th>
+            <th>Imię</th>
+            <th>Klub</th>
+        </tr>
+    </thead>
+ <tbody>
+        {{#each data2}}
+        <tr>
+            <td></td> 
+            <td>{{this.start_id}}</td> 
+            <td>{{this.l_name}}</td>
+            <td>{{this.f_name}} </td>
+            <td>{{this.club}} </td>
+        </tr>
+        {{/each}}
+    </tbody>
+
+</table>
+
+{{/if}}
+</div>
+

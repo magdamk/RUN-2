@@ -1,0 +1,93 @@
+body {
+    padding: 50px;
+    font: 12px;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+input[type=text]:disabled {
+    background: #dddddd;
+    width: auto;
+}
+
+footer {
+    text-align: center;
+    padding: 3px;
+    background-color: seagreen;
+    color: white;
+    margin-top: 1em;
+}
+
+h1 {
+    text-align: center;
+    padding: 3px;
+    background-color: seagreen;
+    color: white;
+}
+
+#stopka {
+    text-shadow: none;
+    border: none;
+}
+
+#clubName {
+    text-transform: uppercase;
+}
+
+.blink {
+    animation: blinker 1s step-start infinite;
+}
+
+@keyframes blinker {
+    20% {
+        opacity: 0;
+    }
+}
+
+@media print {
+    body {
+        margin: 0;
+        color: #000 !important;
+        background-color: #fff !important;
+        font: 12px !important;
+    }
+}
+
+.podium tr:nth-child(1) {
+    background-color: gold !important;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.podium tr:nth-child(1):hover {
+    background-color: rgba(241, 228, 148, 0.993) !important;
+}
+
+.podium tr:nth-child(2) {
+    background-color: silver !important;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.podium tr:nth-child(2):hover {
+    background-color: rgba(228, 225, 225, 0.767) !important;
+}
+
+.podium tr:nth-child(3) {
+    background-color: #cd7f32 !important;
+    font-size: large;
+    font-weight: bold;
+}
+
+.podium tr:nth-child(3):hover {
+    background-color: #cca075 !important;
+}
+
+. .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.currentPage {
+    background-color: rgb(233, 236, 239);
+}

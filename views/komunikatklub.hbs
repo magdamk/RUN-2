@@ -1,0 +1,86 @@
+<h2>{{title}}</h2>
+<div>
+<a class="btn btn-outline-info" href = "/run/club/create/"><i class="material-icons">add</i>Dopisz klub</a><br><br>
+</div>
+<div>
+    Znaleziono klubów: {{count}}
+    <br>
+    Stron: {{maxPage}}
+</div>
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item"> <a class="page-link" href="?sort=1">A-Z</a></li>
+        <li class="page-item"> <a class="page-link" href="?sort=-1">Z-A</a></li>
+        <li class="page-item"><a class="page-link" href="?sort={{sort}}&page={{prevPage}}">&lt;&lt;</a></li>
+        {{#each pages }}
+            {{#if this.selected}}
+                <li class="page-item"><a class="page-link currentPage">{{this.visible}}</a></li>
+            {{else}}
+                <li class="page-item"><a class="page-link" href="?sort={{../sort}}&page={{this.actual}}">{{this.visible}}</a></li>
+            {{/if}}  
+        {{/each}}
+        <li class="page-item"><a class="page-link" href="?sort={{sort}}&page={{nextPage}}">&gt;&gt;</a></li>
+    </ul>
+</nav>
+<table class="table table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Klub</th>
+            <th>Opcje</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    {{#each data}}
+        <tr>
+            <td><b id="clubName" >{{this.name}}</b></td>
+            <td>
+                <form class="form" method="POST" action="/run/club/find/">         
+                    <button type="submit" class="btn btn-outline-info">Zawodnicy</button>      
+                    <input type = "hidden" name="club_id" value="{{this._id}}" style="width: auto;"/>  
+                </form>
+            </td>
+            <td>
+                <form class="form" method="POST" action="/run/club/edit/">         
+                    <button type="submit" class="btn btn-outline-warning">Edytuj</button>      
+                    <input type = "hidden" name="club_id" value="{{this._id}}" style="width: auto;"/>  
+                </form>
+            </td>
+            <td>
+                <form class="simpleform" method="POST" action="/run/club/delete/">         
+                    <button type="submit" class="btn btn-outline-danger">Usuń</button>     
+                    <input type = "hidden" name="club_id" value="{{this._id}}" style="width: auto;"/> 
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>{{this.city}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>{{this.email}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item"> <a class="page-link" href="?sort=1">A-Z</a></li>
+        <li class="page-item"> <a class="page-link" href="?sort=-1">Z-A</a></li>
+        <li class="page-item"><a class="page-link" href="?sort={{sort}}&page={{prevPage}}">&lt;&lt;</a></li>
+        {{#each pages }}
+            {{#if this.selected}}
+                <li class="page-item"><a class="page-link currentPage" >{{this.visible}}</a></li>
+            {{else}}
+                <li class="page-item"><a class="page-link" href="?sort={{../sort}}&page={{this.actual}}">{{this.visible}}</a></li>
+            {{/if}}  
+        {{/each}}
+        <li class="page-item"><a class="page-link" href="?sort={{sort}}&page={{nextPage}}">&gt;&gt;</a></li>
+    </ul>
+</nav>

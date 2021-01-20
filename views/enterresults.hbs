@@ -1,0 +1,66 @@
+<h2>Podaj wyniki dla biegu {{race}}</h2>
+<p>Podaj miejsce zajęte w biegu. W przypadku nieukończenia biegu wpisz 0.</p>
+<br><br>
+<table class="table table-hover table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Numer</th>
+            <th>Nazwisko</th>
+            <th>Imię</th>
+            <th>Klub</th>
+            <th>Miejsce</th>
+            <th>Popraw</th>
+        </tr>
+    </thead>
+    <tbody>
+    {{#each data}}
+        <tr>
+            <td>{{this.start_id}}</td> 
+            <td>{{this.l_name}}</td>
+            <td>{{this.f_name}} </td>
+            <td>{{this.club}} </td>
+                {{#if this.notadded}}
+                <td>
+                    <form class="input-group mb-3" method="GET" action="">         
+                        <input type="number" class="form-control col-md-5" name="place" min='0', max='{{../length}}' style="width: 60px;" required/>
+                        <input type = "hidden" name="_id" value="{{this._id}}" />  
+                        <input type = "hidden" name="race" value="{{../race}}" /> 
+                        <button type="submit" class="btn btn-outline-success" >Dodaj</button>   
+                    </form>
+                </td> 
+                <td></td>
+                {{else}} 
+                <td>{{this.place}}</td>
+                <td>
+                    <form class="input-group mb-3" method="GET" action="">         
+                        <input type="number" class="form-control col-md-5" name="place" min='0', max='{{../length}}' style="width: 60px;"required/>
+                        <input type = "hidden" name="_id" value="{{this._id}}" />  
+                        <input type = "hidden" name="race" value="{{../race}}" /> 
+                        <button type="submit" class="btn btn-outline-warning"  style="width: 100px;">Popraw</button>   
+                    </form>
+                </td>
+                {{/if}}
+            </td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>
+
+<br>
+<div class="blink">Uwaga! Po zamknięciu listy zmiana wyników biegu {{race}} będzie niemożliwa!</div>
+<br>
+
+<form  class="form" method="GET" action="/run/race/enterresults/close/">         
+    <input type = "hidden" name="race" value="{{race}}" /> 
+    <button type="submit" class="btn btn-outline-danger" style="width: 100px;">Zamknij listę</button>   
+</form>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(event) { 
+        var scrollpos = localStorage.getItem('scrollpos');
+        if (scrollpos) window.scrollTo(0, scrollpos);
+            });
+    window.onbeforeunload = function(e) {
+        localStorage.setItem('scrollpos', window.scrollY);
+    };
+</script>

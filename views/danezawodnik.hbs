@@ -1,0 +1,25 @@
+<h2>{{title}}</h2>
+
+<ul>
+<li>Numer startowy: {{dane.start_id}}</li>
+<li>Imię: {{dane.f_name}}</li>
+<li>Nazwisko: {{dane.l_name}}</li>
+<li>Rok urodzenia: {{dane.birth}}</li>
+<li>Płeć: {{dane.gender}}</li>
+<li>Miejscowość: {{dane.city}}</li>
+<li><Email:> {{dane.email}}</Email:></li>
+<li>Klub: {{dane.club}}</li>
+</ul>
+<table>
+<tr><td><form class="form col-md-2" method="POST" action="/run/participant/edit/">         
+    <button type="submit" class="btn btn-outline-warning" style="width: 70px;">Edytuj</button>      
+    <input type = "hidden" name="_id" value="{{dane._id}}" style="width: auto;"/>  
+</form></td>
+<td>
+<form class="form col-md-2" method="POST" action="/run/participant/delete/">         
+    <button type="submit" class="btn btn-outline-danger" style="width: 70px;">Usuń</button>     
+    <input type = "hidden" name="_id" value="{{dane._id}}" style="width: auto;"/> 
+</form>
+</td>
+</tr>
+</table>

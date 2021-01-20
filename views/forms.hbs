@@ -1,0 +1,51 @@
+<h2>{{title}}</h2>
+<p>{{text}}</p>
+<h4>Podaj dane zawodnika</h4>
+<form class="row g-3" method="POST" action="">
+    <div class="col-md-4">
+        <label for="f_name" class="form-label">Imię</label>
+        <input type="text" class="form-control" id="f_name" name="f_name" placeholder="Imię..." required minlength="1"/>
+    </div>
+    <div class="col-md-4">
+        <label for="l_name" class="form-label">Nazwisko</label>
+        <input type="text" class="form-control" id="l_name" name="l_name" placeholder="Nazwisko..." required minlength="1"/>
+    </div>
+    <div class="col-md-4">
+        <label for="city" class="form-label" class="form-label" >Miejscowość</label>
+        <input type="text" class="form-control" id="city" name="city" placeholder="Miejscowość..." required>
+    </div>   
+    <div class="col-md-5">
+        <label for="email" class="form-label" >E-mail</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="email..." required>
+    </div>    
+    
+    <div class="col-md-3">
+        <label for="club" class="form-label" >Klub</label>
+        <select class="form-control" type="text" id="club" name="club">
+            <option value= "">BRAK</option>
+            {{#each kluby}}
+                <option value="{{this.name}}">{{this.name}}</option>
+            {{/each}} 
+        </select>
+    </div>   
+    <div class="col-md-2">
+        <label for="birth" class="form-label" aria-label="Default select example" >Rok urodzenia</label>
+        <select class="form-control" id="birth" name="birth" required>
+            <option value= "">Rok</option>
+                {{#each lata}}
+                    <option value="{{this.year}}" >{{this.year}}</option>
+                {{/each}} 
+        </select>
+    </div>       
+    <div class="col-md-2">
+        <label for="gender" class="form-label">Płeć</label> 
+        <select class="form-control" id="gender" name= "gender" required>
+            <option value="">Wybierz</option>
+            <option value="K">K</option>
+            <option value="M">M</option>
+        </select>
+    </div>
+    <div class="col-12" style="margin-top: 1em;">
+        <button type="submit" class="btn btn-dark">Dodaj</button>
+    </div> 
+</form>
